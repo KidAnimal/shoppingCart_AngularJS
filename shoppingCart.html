@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang='en' ng-app>
+  <head>
+   <title>Book Shopping Cart</title> 
+
+  <script src="angular10.js"></script>
+  <script src="shoppingCart.js"></script>
+  <link rel="stylesheet" href="shoppingCart.css">
+  </head>
+
+  <body ng-controller="CartControler" ng-init="dataLoad()">
+
+    <table>
+      <caption><b>My Books</b></caption>
+      <thead>
+        <tr>
+            <th>Title</th>
+            <th>Qty</th>
+            <th>UnitPrice</th>
+            <th>$Unit Price</th>
+            <th>Line Total</th>
+            <th>Total {{total|currency}}</th>
+            <th></th>
+        </tr>
+      </thead>
+      <tfoot>
+          <tr>
+              <th><button id="new" ng-click="addNew()">New</button></th>
+              <th><button id="save" ng-click="save()">Save</button></th>
+          </tr>
+      </tfoot>
+      <tbody ng-repeat="book in books">
+        <tr>
+            <!--<td>{{book.title}}</td>-->
+            <td>
+                <input ng-model="book.title" size="20">
+            </td>
+            <td>
+                <input ng-model="book.qty" size="2">
+            </td>
+            <td>
+                <input ng-model="book.price" size="6">
+            </td>
+            <td>{{book.price | currency}}</td>
+            <td>{{book.price * book.qty | currency}}</td>
+            <td>
+                <button ng-click="removeBook($index)">
+                    Remove
+                </button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+    <b>Book Count : {{count}}</b>
+  </body>
+</html>
+
+
